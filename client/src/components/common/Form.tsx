@@ -1,4 +1,4 @@
-import { Box, Typography, FormControl, FormGroup, FormControlLabel, Checkbox, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button} from '@pankod/refine-mui'
+import { Box, Typography, FormControl, FormGroup, FormControlLabel, Checkbox, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button, Grid} from '@pankod/refine-mui'
 import { useState } from 'react'
 import {FormProps} from 'interfaces/common';
 import CustomButton from './CustomButton';
@@ -166,54 +166,61 @@ const Form = ({ type, register, formLoading, handleSubmit, handleImageChange, on
               {...register('wc', {required: true})}
               />          
             </FormControl>
+        </Stack> 
 
-        </Stack>  
-        <Stack direction="row" gap={4} justifyContent="space-between">
-          <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 16, color: '#11142d' }}>
+        <Stack direction="row" gap={4}>          
+          <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 13, color: '#11142d' }}>
             <Typography variant="subtitle1" sx={{ marginBottom: "10px" }}>
-              Equipamiento
-            </Typography>
-          <FormGroup>
-            {equipmentOptions.map((option) => (
-              <FormControlLabel
-                key={option.value}
-                control={
-                  <Checkbox
-                    checked={selectedEquipments.includes(option.value)}
-                    onChange={handleEquipmentChange}
-                    value={option.value}
-                  />
-                }
-                label={option.label}
-              />
-            ))}
-            </FormGroup>
-            <FormHelperText>Selecciona los equipamientos disponibles</FormHelperText>
-          </FormControl>
-
-          <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 16, color: '#11142d' }}>
-            <Typography variant="subtitle1" sx={{ marginBottom: "10px" }}>
-              Servicios
-            </Typography>
-            <FormGroup>
-            {facilityOptions.map((option) => (
-              <FormControlLabel
-                key={option.value}
-                control={
-                  <Checkbox
-                    checked={selectedFacilities.includes(option.value)}
-                    onChange={handleFacilityChange}
-                    value={option.value}
-                  />
-                }
-                label={option.label}
-              />
-              ))}
-            </FormGroup>
-            <FormHelperText>Selecciona los servicios disponibles</FormHelperText>
-          </FormControl> 
-        </Stack>   
+                  Equipamiento
+            </Typography>              
+              <FormGroup>
+                <Grid container spacing={2}>
+                  {equipmentOptions.map((option) => (
+                    <Grid item xs={6} key={option.value}>
+                      <FormControlLabel
+                        control={
+                        <Checkbox
+                          checked={selectedEquipments.includes(option.value)}
+                          onChange={handleEquipmentChange}
+                          value={option.value}
+                        />
+                      }
+                        label={option.label}
+                        />
+                    </Grid>
+                    ))}
+                </Grid>
+               </FormGroup>
+             <FormHelperText>Selecciona los equipamientos disponibles</FormHelperText>                
+            </FormControl>
+          </Stack>
           
+          <Stack>
+            <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 16, color: '#11142d' }}>
+              <Stack>
+                <Typography variant="subtitle1" sx={{ marginBottom: "10px" }}>
+                  Servicios
+                </Typography>
+                <FormGroup>
+                {facilityOptions.map((option) => (
+                  <FormControlLabel
+                    key={option.value}
+                    control={
+                      <Checkbox
+                        checked={selectedFacilities.includes(option.value)}
+                        onChange={handleFacilityChange}
+                        value={option.value}
+                      />
+                    }
+                    label={option.label}
+                  />
+                  ))}
+                </FormGroup>
+                <FormHelperText>Selecciona los servicios disponibles</FormHelperText>
+              </Stack>
+            </FormControl> 
+          </Stack> 
+
         <Stack direction="row" gap={4}>
           <FormControl
           sx={{flex:1}}>

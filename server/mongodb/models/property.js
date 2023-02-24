@@ -8,9 +8,13 @@ const PropertySchema = new mongoose.Schema({
     price: { type: Number, required: true},
     photo: { type: String, required: true},
     surface:{ type: Number, required: true},
+
+    
     bedrooms:{ type: Number, required: true, min: 1},
     bathrooms:{ type: Number, required: true, min:1}, 
     wc: { type: Number, required: true, min: 1},
+    facilities: { type: [String], required: true},
+    equipments: { type: [String], required: true},
     creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
 })
