@@ -1,11 +1,47 @@
-import { Box, Typography, FormControl, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button} from '@pankod/refine-mui'
+import { Box, Typography, FormControl, FormGroup, FormControlLabel, Checkbox, FormHelperText, TextField, TextareaAutosize, Stack, Select, MenuItem, Button} from '@pankod/refine-mui'
 import { useState } from 'react'
 import {FormProps} from 'interfaces/common';
 import CustomButton from './CustomButton';
 
+const equipmentOptions = [
+  { label: "TV", value: "tv" },
+  { label: "Wi-Fi", value: "wifi" },
+  { label: "Cuisine", value: "kitchen" },
+  { label: "Machine à laver", value: "washingMachine" },
+  { label: "Climatisation", value: "washingMachine" },
+  { label: "Chauffage", value: "washingMachine" },
+];
+
+const facilityOptions = [
+  { label: "Aparcamiento", value: "parking" },
+  { label: "Piscina", value: "pool" },
+  { label: "Gimnasio", value: "gym" },
+  { label: "Ascensor", value: "elevator" },
+];
+
 const Form = ({ type, register, formLoading, handleSubmit, handleImageChange, onFinishHandler, propertyImage} : FormProps) => {
   
   const [descriptionPlaceholder, setDescriptionPlaceholder] = useState<string>('Décrivez la propriété');
+  const [selectedEquipments, setSelectedEquipments] = useState<string[]>([]);
+  const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
+
+  const handleEquipmentChange = (event: React.ChangeEvent<{ value: string }>) => {
+    const value = event.target.value as string;
+    if (selectedEquipments.includes(value)) {
+      setSelectedEquipments(selectedEquipments.filter((val) => val !== value));
+    } else {
+      setSelectedEquipments([...selectedEquipments, value]);
+    }
+  };
+  
+  const handleFacilityChange = (event: React.ChangeEvent<{ value: string }>) => {
+    const value = event.target.value as string;
+    if (selectedFacilities.includes(value)) {
+      setSelectedFacilities(selectedFacilities.filter((val) => val !== value));
+    } else {
+      setSelectedFacilities([...selectedFacilities, value]);
+    }
+  };
 
   const handleDescriptionFocus = () => {
     setDescriptionPlaceholder('');
@@ -131,7 +167,52 @@ const Form = ({ type, register, formLoading, handleSubmit, handleImageChange, on
               />          
             </FormControl>
 
-        </Stack>        
+        </Stack>  
+        <Stack direction="row" gap={4} justifyContent="space-between">
+          <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 16, color: '#11142d' }}>
+            <Typography variant="subtitle1" sx={{ marginBottom: "10px" }}>
+              Equipamiento
+            </Typography>
+          <FormGroup>
+            {equipmentOptions.map((option) => (
+              <FormControlLabel
+                key={option.value}
+                control={
+                  <Checkbox
+                    checked={selectedEquipments.includes(option.value)}
+                    onChange={handleEquipmentChange}
+                    value={option.value}
+                  />
+                }
+                label={option.label}
+              />
+            ))}
+            </FormGroup>
+            <FormHelperText>Selecciona los equipamientos disponibles</FormHelperText>
+          </FormControl>
+
+          <FormControl component="fieldset" sx={{ marginBottom: "20px", fontWeight: 500, margin:'10px 0', fontSize: 16, color: '#11142d' }}>
+            <Typography variant="subtitle1" sx={{ marginBottom: "10px" }}>
+              Servicios
+            </Typography>
+            <FormGroup>
+            {facilityOptions.map((option) => (
+              <FormControlLabel
+                key={option.value}
+                control={
+                  <Checkbox
+                    checked={selectedFacilities.includes(option.value)}
+                    onChange={handleFacilityChange}
+                    value={option.value}
+                  />
+                }
+                label={option.label}
+              />
+              ))}
+            </FormGroup>
+            <FormHelperText>Selecciona los servicios disponibles</FormHelperText>
+          </FormControl> 
+        </Stack>   
           
         <Stack direction="row" gap={4}>
           <FormControl

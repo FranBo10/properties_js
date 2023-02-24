@@ -28,14 +28,14 @@ const AllProperties = () => {
     }
   }, [filters])
 
-  if (isLoading) return <Typography>Loading...</Typography>
+  if (isLoading) return <Typography ml={5}>Loading...</Typography>
   if (isError) return <Typography>Un erreur est survenue...</Typography>
   
   return (
     <Box>
-      <Box mt='20px' sx={{ display: 'flex', flexWrap: 'wrap', gap:3 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap:3 }}>
         <Stack direction='column' width='100%'>
-         <Typography fontSize={25} fontWeight={700} color="#11142d">
+         <Typography fontSize={25} fontWeight={700} ml={5} mb={2} color="#11142d">
             {!allProperties.length ?'Aucune propriété ne corresponds pas a votre critère' : 'Résultat des propriétés'}</Typography>
             <Box mb={2} mt={3} display="flex" width='84%' justifyContent="space-between" flexWrap='wrap'>
               <Box display='flex' gap={2} flexWrap="wrap" mb={{xs: "20px", sm: "0"}}>

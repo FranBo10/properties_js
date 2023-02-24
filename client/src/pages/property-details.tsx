@@ -18,7 +18,7 @@ const PropertyDetails = () => {
   const { data, isLoading, isError } = queryResult;
 
   const propertyDetails = data?.data ?? {};
-  if (isLoading) return <Typography>Loading...</Typography>
+  if (isLoading) return <Typography ml={5}>Loading...</Typography>
   if (isError) return <Typography>Un erreur est survenue...</Typography>  
 
   const isCurrentUser = user.email === propertyDetails.creator.email;

@@ -12,7 +12,7 @@ const Agents = () => {
 
   return (
     <Box>
-      <Typography fontSize={25} fontWeight={700} color="#11142d">List d'agents</Typography>
+      <Typography fontSize={25} fontWeight={700} ml={5} color="#11142d">Liste d'agents</Typography>
       <Box
       mt="20px"
       sx={{display: 'flex', flexWrap: 'wrap', gap:'20px',backgroundColor:"#fcfcfc"}}>

@@ -12,7 +12,7 @@ function checkImage(url: any) {
 
 const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
   <Box>
-    <Typography fontSize={25} fontWeight={700} color="#11142D">{type} Profil</Typography>
+    <Typography fontSize={25} fontWeight={700} ml={5} color="#11142D">{type} Profil</Typography>
 
     <Box
       mt="20px"
@@ -93,7 +93,7 @@ const Profile = ({ type, name, avatar, email, properties }: ProfileProps) => (
       padding="20px"
       bgcolor="#FCFCFC"
     >
-      <Typography fontSize={18} fontWeight={600} color="#11142D">{type} Properties</Typography>
+      <Typography fontSize={18} fontWeight={600} color="#11142D">Mes Propriétées</Typography>
 
       <Box
         mt={2.5}
